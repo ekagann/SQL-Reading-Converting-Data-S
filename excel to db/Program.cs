@@ -10,7 +10,7 @@ using MongoDB.Driver.Core.Configuration;
 namespace Excel_to_db
 {
     class Program
-    {//"C:\\Users\\stajyer\\Desktop\\Loglar - Kopya.xlsx"
+    {
         static void Main(string[] args)
         {
 
@@ -27,7 +27,7 @@ namespace Excel_to_db
             double ResimPlaka = 1;
 
 
-            string FileName = "C:\\Users\\stajyer\\Desktop\\Loglar - Kopya.xlsx";
+            string FileName = "Path";
             var WorkBook = new XLWorkbook(FileName);
             var ws1 = WorkBook.Worksheet(1).RangeUsed().RowsUsed().Skip(1);
 
@@ -52,11 +52,11 @@ namespace Excel_to_db
 
                 int ilksatir = 1;
                 int SiradakiSatir = 1;
-                string BaglantiAdresi = "Server=LBT013\\SQLEXPRESS;Database=ekt;User Id=sa;Password=123;";
+                string BaglantiAdresi = "Server=**;Database=**;User Id=**;Password=**;";
                 SqlConnection Baglanti = new SqlConnection(BaglantiAdresi);
                 Baglanti.ConnectionString = BaglantiAdresi;
-                String query = "IF NOT EXISTS(SELECT * FROM ekt_table WHERE TransferID = @TransferID AND Plaka = @Plaka)" +
-                         " INSERT INTO ekt_table(TransferID,GondermeDurumu,BaslamaZamani,BitisZamani,KameraID,Plaka,Zaman,Resim,ResimPlaka) " +
+                String query = "IF NOT EXISTS(SELECT * FROM dbname WHERE TransferID = @TransferID AND Plaka = @Plaka)" +
+                         " INSERT INTO tablename(TransferID,GondermeDurumu,BaslamaZamani,BitisZamani,KameraID,Plaka,Zaman,Resim,ResimPlaka) " +
                          "VALUES(@TransferID,@GondermeDurumu,@BaslamaZamani,@BitisZamani,@KameraID,@Plaka,@Zaman,@Resim,@ResimPlaka) ";
 
                 for (int i = 1; i <= SonSatir; i++)
@@ -140,7 +140,7 @@ namespace Excel_to_db
 
                 XLWorkbook WbYeni = new XLWorkbook();   
                 WbYeni.Worksheets.Add(dtLoglar, "Kamera Logları");
-                WbYeni.SaveAs("C:\\Users\\stajyer\\Desktop\\Çıktı2.xlsx");
+                WbYeni.SaveAs("**.xlsx");
                 
 
                 
